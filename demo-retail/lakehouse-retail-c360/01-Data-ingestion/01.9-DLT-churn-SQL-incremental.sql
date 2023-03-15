@@ -138,7 +138,8 @@ CREATE STREAMING LIVE TABLE churn_orders_bronze (
   CONSTRAINT orders_correct_schema EXPECT (_rescued_data IS NULL)
 )
 COMMENT "ERP 주문 내역 원본 데이터"
-AS SELECT * FROM cloud_files("/demos/retail/churn/orders", "json")
+-- AS SELECT * FROM cloud_files("/demos/retail/churn/orders", "json")
+AS SELECT * FROM cloud_files("/ykko-demo/retail/churn/orders", "json")
 
 -- COMMAND ----------
 
@@ -305,8 +306,7 @@ FROM live.churn_features
 -- MAGIC 
 -- MAGIC <img width="500px" src="https://github.com/QuentinAmbard/databricks-demo/raw/main/retail/resources/images/retail-dashboard.png"/>
 -- MAGIC 
--- MAGIC <!-- <a href="/sql/dashboards/8b008d69-32ce-4009-8548-4f43152d617d?o=1444828305810485" target="_blank">고객 이탈 예측 대쉬보드</a> -->
--- MAGIC <a href="/sql/dashboards/efdffed1-8e4e-4df1-9e1c-c03ff26373e2?o=1444828305810485" target="_blank">고객 이탈 예측 대쉬보드</a>
+-- MAGIC <a href="/sql/dashboards/8b008d69-32ce-4009-8548-4f43152d617d?o=1444828305810485" target="_blank">고객 이탈 예측 대쉬보드</a>
 
 -- COMMAND ----------
 

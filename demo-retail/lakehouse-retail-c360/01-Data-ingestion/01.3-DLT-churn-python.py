@@ -1,44 +1,8 @@
 # Databricks notebook source
 # MAGIC %md-sandbox
-# MAGIC # Databricks를 사용한 데이터 엔지니어링 - C360 데이터베이스 구축
-# MAGIC 
-# MAGIC C360 데이터베이스를 구축하려면 여러 데이터 소스를 수집해야 합니다.
-# MAGIC 
-# MAGIC 개인화 및 마케팅 타겟팅에 사용되는 실시간 인사이트를 지원하기 위해 배치 로드 및 스트리밍 수집이 필요한 복잡한 프로세스입니다.
-# MAGIC 
-# MAGIC 다운스트림 사용자(데이터 분석가 및 데이터 과학자)를 위해 정형화된 SQL 테이블을 생성하기 위해 데이터를 수집, 변환 및 정리하는 것은 복잡합니다.
-# MAGIC 
-# MAGIC <link href="https://fonts.googleapis.com/css?family=DM Sans" rel="stylesheet"/>
-# MAGIC <div style="width:300px; text-align: center; float: right; margin: 30px 60px 10px 10px;  font-family: 'DM Sans'">
-# MAGIC   <div style="height: 250px; width: 300px;  display: table-cell; vertical-align: middle; border-radius: 50%; border: 25px solid #fcba33ff;">
-# MAGIC     <div style="font-size: 70px;  color: #70c4ab; font-weight: bold">
-# MAGIC       73%
-# MAGIC     </div>
-# MAGIC     <div style="color: #1b5162;padding: 0px 30px 0px 30px;">엔터프라이즈 데이터는 분석 및 의사 결정에 사용되지 않습니다.</div>
-# MAGIC   </div>
-# MAGIC   <div style="color: #bfbfbf; padding-top: 5px">출처: Forrester</div>
-# MAGIC </div>
-# MAGIC 
-# MAGIC <br>
-# MAGIC 
-# MAGIC ## <img src="https://github.com/databricks-demos/dbdemos-resources/raw/main/images/de.png" style="float:left; margin: -35px 0px 0px 0px" width="80px"> John은 데이터 엔지니어로서 엄청난 시간을 보냅니다…
-# MAGIC 
-# MAGIC 
-# MAGIC * 데이터 수집 및 변환 수동 코딩 및 기술 문제 처리:<br>
-# MAGIC   *스트리밍 및 배치 지원, 동시 작업 처리, 작은 파일 읽기 문제, GDPR 요구 사항, 복잡한 DAG 종속성...*<br><br>
-# MAGIC * 품질 및 테스트 시행을 위한 맞춤형 프레임워크 구축<br><br>
-# MAGIC * 관찰 및 모니터링 기능을 갖춘 확장 가능한 인프라 구축 및 유지<br><br>
-# MAGIC * 다른 시스템에서 호환되지 않는 거버넌스 모델 관리
-# MAGIC <br style="clear: both">
-# MAGIC 
-# MAGIC 이로 인해 **운영 복잡성**과 오버헤드가 발생하여 별도의 전문가를 필요로하고 궁극적으로 **데이터 프로젝트를 위험에 빠뜨립니다**.
-
-# COMMAND ----------
-
-# MAGIC %md-sandbox
 # MAGIC # 델타 라이브 테이블(DLT)로 수집 및 변환 간소화
 # MAGIC 
-# MAGIC <img style="float: right" width="500px" src="https://raw.githubusercontent.com/dongwkim/field-demos-kr/markdown-korean/field-demo/images/retail/lakehouse-chrun/lakehouse-retail-c360-churn-1.png" />
+# MAGIC <img style="float: right" width="300px" src="https://raw.githubusercontent.com/QuentinAmbard/databricks-demo/main/retail/resources/images/lakehouse-retail/lakehouse-retail-churn-2.png" />
 # MAGIC 
 # MAGIC 이 노트북에서 우리는 데이터 엔지니어로 c360 데이터베이스를 구축할 것입니다. <br>
 # MAGIC BI 및 ML 워크로드에 필요한 테이블을 준비하기 위해 원시 데이터 소스를 사용하고 정리합니다.
@@ -103,7 +67,7 @@
 # MAGIC 
 # MAGIC 다음 흐름을 구현해 보겠습니다.
 # MAGIC  
-# MAGIC <div><img width="1100px" src="https://raw.githubusercontent.com/dongwkim/field-demos-kr/markdown-korean/field-demo/images/retail/lakehouse-chrun/lakehouse-retail-churn-de.png"/></div>
+# MAGIC <div><img width="1100px" src="https://github.com/QuentinAmbard/databricks-demo/raw/main/retail/resources/images/lakehouse-retail/lakehouse-retail-churn-de.png"/></div>
 # MAGIC 
 # MAGIC *Note that we're including the ML model our [Data Scientist built]($../04-Data-Science-ML/04.1-automl-churn-prediction) using Databricks AutoML to predict the churn. We'll cover that in the next section.*
 
@@ -118,7 +82,7 @@
 # MAGIC %md-sandbox
 # MAGIC ### 1/ Databricks Autoloader(cloud_files)를 사용하여 데이터 로드
 # MAGIC <div style="float:right">
-# MAGIC   <img width="500px" src="https://raw.githubusercontent.com/dongwkim/field-demos-kr/markdown-korean/field-demo/images/retail/lakehouse-chrun/lakehouse-retail-churn-de-small-1.png.png"/>
+# MAGIC   <img width="500px" src="https://github.com/QuentinAmbard/databricks-demo/raw/main/retail/resources/images/lakehouse-retail/lakehouse-retail-churn-de-small-1.png"/>
 # MAGIC </div>
 # MAGIC   
 # MAGIC 오토로더를 사용하면 클라우드 스토리지에서 수백만 개의 파일을 효율적으로 수집하고 대규모로 효율적인 스키마 추론(Inference) 및 진화(Evolution)를 지원할 수 있습니다.
@@ -170,7 +134,7 @@ def churn_users_bronze():
 # MAGIC %md-sandbox
 # MAGIC ### 2/ 데이터 분석가를 위한 품질 강화 및 테이블 구체화
 # MAGIC <div style="float:right">
-# MAGIC   <img width="500px" src="https://raw.githubusercontent.com/dongwkim/field-demos-kr/markdown-korean/field-demo/images/retail/lakehouse-chrun/lakehouse-retail-churn-de-small-2.png"/>
+# MAGIC   <img width="500px" src="https://github.com/QuentinAmbard/databricks-demo/raw/main/retail/resources/images/lakehouse-retail/lakehouse-retail-churn-de-small-2.png"/>
 # MAGIC </div>
 # MAGIC 
 # MAGIC 종종 실버라고 부르는 다음 레이어는 브론즈 레이어에서 **증분** 데이터를 소비하고 일부 정보를 정리합니다.
@@ -221,7 +185,7 @@ def churn_orders():
 # MAGIC %md-sandbox
 # MAGIC ### 3/ 데이터를 집계하고 조인하여 ML 기능 생성
 # MAGIC <div style="float:right">
-# MAGIC   <img width="500px" src="https://raw.githubusercontent.com/dongwkim/field-demos-kr/markdown-korean/field-demo/images/retail/lakehouse-chrun/lakehouse-retail-churn-de-small-3.png"/>
+# MAGIC   <img width="500px" src="https://github.com/QuentinAmbard/databricks-demo/raw/main/retail/resources/images/lakehouse-retail/lakehouse-retail-churn-de-small-3.png"/>
 # MAGIC </div>
 # MAGIC 
 # MAGIC 이제 Churn 예측에 필요한 기능을 만들 준비가 되었습니다.
@@ -270,7 +234,7 @@ def churn_features():
 # MAGIC %md-sandbox
 # MAGIC ## 5/ ML 모델로 Gold 데이터 강화
 # MAGIC <div style="float:right">
-# MAGIC   <img width="500px" src="https://raw.githubusercontent.com/dongwkim/field-demos-kr/markdown-korean/field-demo/images/retail/lakehouse-chrun/lakehouse-retail-churn-de-small-4.png"/>
+# MAGIC   <img width="500px" src="https://github.com/QuentinAmbard/databricks-demo/raw/main/retail/resources/images/lakehouse-retail/lakehouse-retail-churn-de-small-4.png"/>
 # MAGIC </div>
 # MAGIC 
 # MAGIC 데이터 과학자 팀은 Auto ML을 사용하여 이탈 예측 모델을 구축하고 Databricks 모델 레지스트리에 저장했습니다.

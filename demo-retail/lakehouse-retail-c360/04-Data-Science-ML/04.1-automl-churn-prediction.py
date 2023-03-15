@@ -1,66 +1,4 @@
 # Databricks notebook source
-# MAGIC %md-sandbox
-# MAGIC 
-# MAGIC # Data Science with Databricks
-# MAGIC 
-# MAGIC ## ML 은 개인화의 핵심
-# MAGIC 
-# MAGIC C360 데이터베이스를 수집하고 쿼리할 수 있는 것이 첫 번째 단계이지만 경쟁이 치열한 시장에서 경쟁우위를 하기에는 충분하지 않습니다.
-# MAGIC 
-# MAGIC 이제 고객은 실시간 개인화와 새로운 형태의 커뮤니케이션을 기대합니다. 현재적인 데이터 회사는 AI를 통해 이를 달성합니다.
-# MAGIC 
-# MAGIC <style>
-# MAGIC .right_box{
-# MAGIC   margin: 30px; box-shadow: 10px -10px #CCC; width:600px;height:250px; background-color: #1b3139ff; box-shadow:  0 0 10px  rgba(0,0,0,0.6);
-# MAGIC   border-radius:25px;font-size: 30px; float: left; padding: 20px; color: #f9f7f4; }
-# MAGIC .badge {
-# MAGIC   clear: left; float: left; height: 30px; width: 30px;  display: table-cell; vertical-align: middle; border-radius: 50%; background: #fcba33ff; text-align: center; color: white; margin-right: 10px}
-# MAGIC .badge_b { 
-# MAGIC   height: 35px}
-# MAGIC </style>
-# MAGIC <link href='https://fonts.googleapis.com/css?family=DM Sans' rel='stylesheet'>
-# MAGIC <div style="font-family: 'DM Sans'">
-# MAGIC   <div style="width: 700px; color: #1b3139; margin-left: 50px; float: left">
-# MAGIC     <div style="color: #ff5f46; font-size:60px">90%</div>
-# MAGIC     <div style="font-size:20px;  margin-top: -20px; line-height: 30px;">
-# MAGIC       엔터프라이즈 애플리케이션은 2025년까지 AI로 강화될 예정 —IDC
-# MAGIC     </div>
-# MAGIC     <div style="color: #ff5f46; font-size:60px">$10T+</div>
-# MAGIC     <div style="font-size:20px;  margin-top: -20px; line-height: 30px;">
-# MAGIC        2030년 AI가 창출할 것으로 예상되는 비즈니스 가치 —PWC
-# MAGIC     </div>
-# MAGIC   </div>
-# MAGIC </div>
-# MAGIC   <div class="right_box">
-# MAGIC       그러나 ML을 대규모로 작동시키는데는 <br/>큰 어려움이 있습니다!<br/><br/>
-# MAGIC       대부분의 ML 프로젝트는 <br/>프로덕션에 들어가기 전에 여전히 실패합니다.
-# MAGIC   </div>
-# MAGIC <br style="clear: both">
-# MAGIC 
-# MAGIC ## Machine learning is data + transforms.
-# MAGIC 
-# MAGIC 비즈니스 라인에 가치를 제공하는 것은 모델 구축에 관한 것만이 아니기 때문에 ML은 어렵습니다. <br>
-# MAGIC ML 수명 주기는 데이터 파이프라인으로 구성됩니다. 데이터 사전 처리, 피쳐 엔지니어링, 학습, 추론, 모니터링, 재학습...<br>
-# MAGIC 모든 파이프라인은 데이터 + 코드입니다.
-# MAGIC 
-# MAGIC <img style="float: right; margin-top: 10px" width="700px" src="https://raw.githubusercontent.com/dongwkim/field-demos-kr/markdown-korean/field-demo/images/retail/lakehouse-chrun/lakehouse-retail-c360-churn-4.png" />
-# MAGIC 
-# MAGIC <img src="https://github.com/databricks-demos/dbdemos-resources/raw/main/images/ds.png" style="float: left;" width="80px"> 
-# MAGIC <h3 style="padding: 10px 0px 0px 5px">Marc는 데이터 과학자로서 <br/>모든 ML 및 DS 단계를 가속화하는 데이터 + ML 플랫폼이 필요합니다:</h3>
-# MAGIC 
-# MAGIC <div style="font-size: 19px; margin-left: 73px; clear: left">
-# MAGIC <div class="badge_b"><div class="badge">1</div> 실시간 처리를 지원하는 데이터 파이프라인 구축(with DTL)</div>
-# MAGIC <div class="badge_b"><div class="badge">2</div> 데이터 탐색</div>
-# MAGIC <div class="badge_b"><div class="badge">3</div> 피쳐 생성</div>
-# MAGIC <div class="badge_b"><div class="badge">4</div> 빌드 & 모델 학습</div>
-# MAGIC <div class="badge_b"><div class="badge">5</div> 모델 배포(배치 또는 실시간)</div>
-# MAGIC <div class="badge_b"><div class="badge">6</div> 모니터링</div>
-# MAGIC </div>
-# MAGIC 
-# MAGIC **Marc는 데이터 레이크 하우스가 필요합니다**.  Lakehouse 내 프로덕션에서 Churn 모델을 배포하는 방법을 살펴보겠습니다.
-
-# COMMAND ----------
-
 # MAGIC %md
 # MAGIC 
 # MAGIC # Churn Prediction - AutoML을 통한 클릭 한번으로 모델 배포 하기
@@ -71,7 +9,10 @@
 # MAGIC 
 # MAGIC 이탈 데이터로 보강된 사용자 테이블은 델타 라이브 테이블 파이프라인 내에 저장되었습니다. 우리가 해야 할 일은 이 정보를 읽고 분석하고 Auto-ML 실행을 시작하는 것뿐입니다.
 # MAGIC 
-# MAGIC <img  src="https://raw.githubusercontent.com/dongwkim/field-demos-kr/markdown-korean/field-demo/images/retail/lakehouse-chrun/lakehouse-retail-churn-ds-flow.png" width="1000px">
+# MAGIC <img src="https://raw.githubusercontent.com/QuentinAmbard/databricks-demo/main/retail/resources/images/lakehouse-retail/lakehouse-retail-churn-ml-flow.png" width="800px">
+# MAGIC 
+# MAGIC <!-- Collect usage data (view). Remove it to disable collection. View README for more details.  -->
+# MAGIC <img width="1px" src="https://www.google-analytics.com/collect?v=1&gtm=GTM-NKQ8TT7&tid=UA-163989034-1&cid=555&aip=1&t=event&ec=field_demos&ea=display&dp=%2F42_field_demos%2Fretail%2Flakehouse_churn%2Fautoml&dt=LAKEHOUSE_RETAIL_CHURN">
 
 # COMMAND ----------
 
@@ -88,7 +29,7 @@
 
 # DBTITLE 1,고객 이탈 Gold 테이블 조회
 # Read our churn_features table
-churn_dataset = spark.table("dongwook_demos.churn_features")
+churn_dataset = spark.table("demo_ykko.churn_features")
 display(churn_dataset)
 
 # COMMAND ----------
@@ -143,7 +84,7 @@ dataset.head(10)
 # COMMAND ----------
 
 from databricks.feature_store import FeatureStoreClient
-database = "dongwook_demos"
+database = "demo_ykko"
 fs = FeatureStoreClient()
 
 try:

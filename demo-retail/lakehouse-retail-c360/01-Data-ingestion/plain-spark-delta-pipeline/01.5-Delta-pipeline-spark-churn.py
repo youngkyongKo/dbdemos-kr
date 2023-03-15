@@ -98,7 +98,7 @@ dbutils.widgets.dropdown("reset_all_data", "false", ["true", "false"], "Reset al
 
 # DBTITLE 1,Review the raw user data received as JSON
 # MAGIC %sql
-# MAGIC USE catalog DONGWOOK_demos;
+# MAGIC USE catalog dongwook_demos;
 # MAGIC use schema lakehouse_c360 ;
 # MAGIC -- SELECT * FROM json.`/demos/retail/churn/users`
 
