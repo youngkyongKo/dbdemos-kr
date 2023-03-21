@@ -135,7 +135,7 @@
 -- COMMAND ----------
 
 -- MAGIC %md 
--- MAGIC Open the [Datawarehousing notebook]($./03-BI-data-warehousing/03-BI-Datawarehousing) to start running your BI queries or access or directly open the <a href="/sql/dashboards/19394330-2274-4b4b-90ce-d415a7ff2130" target="_blank">Churn Analysis Dashboard</a>
+-- MAGIC Open the [Datawarehousing notebook]($./03-BI-data-warehousing/03-BI-Datawarehousing) to start running your BI queries or access or directly open the <!-- <a href="/sql/dashboards/19394330-2274-4b4b-90ce-d415a7ff2130" target="_blank">--><a href="/sql/dashboards/efdffed1-8e4e-4df1-9e1c-c03ff26373e2?o=1444828305810485" target="_blank">Churn Analysis Dashboard</a>
 
 -- COMMAND ----------
 
