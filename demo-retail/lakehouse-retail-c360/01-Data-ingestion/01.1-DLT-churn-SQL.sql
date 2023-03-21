@@ -317,7 +317,8 @@ FROM live.churn_features
 -- MAGIC 
 -- MAGIC 보시다시피 databricks로 Data Pipeline을 구축하면 엔진이 모든 어려운 데이터 엔지니어링 작업을 해결하는 동안 비즈니스 구현에 집중할 수 있습니다.
 -- MAGIC 
--- MAGIC <a dbdemos-pipeline-id="dlt-churn" href="#joblist/pipelines/4704e053-1b43-4eb9-9024-908dd52735f3" target="_blank">Churn 델타 라이브 테이블 파이프라인</a>을 열고 클릭 데이터 리니지를 시각화하고 새로운 데이터를 점진적으로 소비하기 시작합니다!
+-- MAGIC <!-- <a dbdemos-pipeline-id="dlt-churn" href="#joblist/pipelines/4704e053-1b43-4eb9-9024-908dd52735f3" target="_blank">--> 
+-- MAGIC <a dbdemos-pipeline-id="dlt-churn" href="#joblist/pipelines/d3a24e91-91e7-48e9-9f0a-345554fd13b4/updates/5275dd53-6b5a-4604-88d4-43f20bc85c5d" target="_blank">Churn 델타 라이브 테이블 파이프라인</a>을 열고 클릭 데이터 리니지를 시각화하고 새로운 데이터를 점진적으로 소비하기 시작합니다!
 
 -- COMMAND ----------
 
