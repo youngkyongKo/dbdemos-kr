@@ -123,7 +123,7 @@
 -- COMMAND ----------
 
 --CREATE CATALOG IF NOT EXISTS dongwook_demos;
-USE CATALOG dongwook_demos;
+USE CATALOG uc_demo_yk;
 SELECT CURRENT_CATALOG();
 
 -- COMMAND ----------
@@ -150,20 +150,20 @@ SELECT CURRENT_CATALOG();
 -- COMMAND ----------
 
 -- DBTITLE 1,테이블은 카탈로그상에서 사용할 수 있습니다.
-CREATE SCHEMA IF NOT EXISTS lakehouse_c360;
-USE lakehouse_c360;
-SHOW TABLES IN lakehouse_c360;
+CREATE SCHEMA IF NOT EXISTS demo_ykko;
+USE demo_ykko;
+SHOW TABLES IN demo_ykko;
 
 -- COMMAND ----------
 
 -- DBTITLE 1,분석가 및 데이터 엔지니어에게 액세스 권한 부여
 -- 분석가에서 특정 테이블에 대한 조회 권한 부여 
-GRANT SELECT ON TABLE dongwook_demos.lakehouse_c360.churn_users TO `analysts`;
-GRANT SELECT ON TABLE dongwook_demos.lakehouse_c360.churn_app_events TO `analysts`;
-GRANT SELECT ON TABLE dongwook_demos.lakehouse_c360.churn_orders TO `analysts`;
+GRANT SELECT ON TABLE uc_demo_yk.demo_ykko.churn_users TO `analysts`;       
+GRANT SELECT ON TABLE            demo_ykko.churn_app_events TO `analysts`;
+GRANT SELECT ON TABLE                      churn_orders TO `analysts`;
 
 -- 데이터 엔지니어에게 스키마(데이터베이스)에 대한 조회 및 수정 권한 부여  
-GRANT SELECT, MODIFY ON SCHEMA dongwook_demos.lakehouse_c360 TO `dataengineers`;
+GRANT SELECT, MODIFY ON SCHEMA uc_demo_yk.demo_ykko TO `dataengineers`;
 
 -- COMMAND ----------
 
